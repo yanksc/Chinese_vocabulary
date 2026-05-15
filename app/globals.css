@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  background: #f4f1ea;
+  color: #181713;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(90deg, rgba(24, 23, 19, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(24, 23, 19, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, #fffdf8 0%, #f4f1ea 68%, #efebe2 100%);
+  background-size: 36px 36px, 36px 36px, auto;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.font-kai {
+  font-family: BiauKai, "Kaiti TC", KaiTi, STKaiti, "DFKai-SB", serif;
+}
+
+.slideshow-stage {
+  perspective: 1600px;
+}
+
+.flip-card {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.flip-card-next {
+  animation: flip-next 260ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.flip-card-previous {
+  animation: flip-previous 260ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+@keyframes flip-next {
+  from {
+    opacity: 0;
+    transform: rotateY(-18deg) translateX(22px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotateY(0deg) translateX(0) scale(1);
+  }
+}
+
+@keyframes flip-previous {
+  from {
+    opacity: 0;
+    transform: rotateY(18deg) translateX(-22px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotateY(0deg) translateX(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}
