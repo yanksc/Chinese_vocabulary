@@ -33,7 +33,17 @@ select {
 }
 
 .font-kai {
-  font-family: BiauKai, "Kaiti TC", KaiTi, STKaiti, "DFKai-SB", serif;
+  font-family:
+    BiauKai,
+    "Kaiti TC",
+    "Kaiti SC",
+    KaiTi,
+    STKaiti,
+    "DFKai-SB",
+    "AR PL UKai TW",
+    "Noto Serif CJK TC",
+    "Noto Serif TC",
+    serif;
 }
 
 .slideshow-stage {

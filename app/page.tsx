@@ -313,12 +313,12 @@ export default function Home() {
   const currentStatus = currentCard ? statuses[currentCard.id] : undefined;
 
   return (
-    <main className="min-h-screen overflow-hidden px-3 py-3 text-stone-950 sm:px-4 sm:py-4 md:px-8">
-      <section className="mx-auto flex min-h-[calc(100vh-1.5rem)] max-w-7xl flex-col sm:min-h-[calc(100vh-2rem)]">
-        <header className="flex flex-col gap-3 rounded-md border border-stone-200 bg-white/85 px-3 py-3 shadow-sm backdrop-blur md:flex-row md:items-center md:justify-between md:px-4">
-          <div className="flex items-center justify-between gap-3">
+    <main className="h-dvh overflow-hidden px-2 py-2 text-stone-950 sm:px-4 sm:py-4 md:px-8">
+      <section className="mx-auto flex h-full max-w-7xl flex-col gap-2 sm:gap-3">
+        <header className="flex shrink-0 flex-col gap-2 rounded-md border border-stone-200 bg-white/85 px-2 py-2 shadow-sm backdrop-blur sm:px-3 md:flex-row md:items-center md:justify-between md:px-4">
+          <div className="flex items-center justify-between gap-2">
             <button
-              className="h-10 shrink-0 rounded-md border border-stone-300 bg-white px-3 text-sm font-semibold shadow-sm transition hover:border-stone-400 hover:bg-stone-50 sm:px-4"
+              className="h-8 shrink-0 rounded-md border border-stone-300 bg-white px-2.5 text-xs font-semibold shadow-sm transition hover:border-stone-400 hover:bg-stone-50 sm:h-9 sm:px-3 sm:text-sm"
               onClick={() => fileInputRef.current?.click()}
             >
               Upload
@@ -330,7 +330,7 @@ export default function Home() {
               className="hidden"
               onChange={(event) => void handleUpload(event.target.files?.[0] ?? null)}
             />
-            <div className="flex min-w-0 items-center gap-2 text-sm font-medium text-stone-600">
+            <div className="flex min-w-0 items-center gap-1.5 text-xs font-medium text-stone-600 sm:gap-2 sm:text-sm">
               <span>{cards.length} cards</span>
               <span className="h-1 w-1 rounded-full bg-stone-300" />
               <span className="text-green-700">{knownCount} ✓</span>
@@ -338,10 +338,10 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex w-full gap-2 overflow-x-auto pb-1 md:w-auto md:justify-end md:overflow-visible md:pb-0">
+          <div className="flex w-full gap-1.5 overflow-x-auto md:w-auto md:justify-end md:overflow-visible">
             <div className="flex shrink-0 items-center gap-1 rounded-md border border-stone-200 bg-stone-100 p-1">
               <button
-                className={`h-9 rounded-md px-3 text-sm font-semibold transition sm:px-4 ${
+                className={`h-7 rounded-md px-2.5 text-xs font-semibold transition sm:h-8 sm:px-3 sm:text-sm ${
                   chineseFont === "sans" ? "bg-stone-950 text-white shadow-sm" : "text-stone-600 hover:bg-white"
                 }`}
                 aria-label="Use original font"
@@ -350,7 +350,7 @@ export default function Home() {
                 Original
               </button>
               <button
-                className={`h-9 rounded-md px-3 text-sm font-semibold transition sm:px-4 ${
+                className={`h-7 rounded-md px-2.5 text-xs font-semibold transition sm:h-8 sm:px-3 sm:text-sm ${
                   chineseFont === "kai" ? "bg-stone-950 text-white shadow-sm" : "text-stone-600 hover:bg-white"
                 }`}
                 aria-label="Use Kai font"
@@ -362,7 +362,7 @@ export default function Home() {
 
             <div className="flex shrink-0 items-center gap-1 rounded-md border border-stone-200 bg-stone-100 p-1">
             <button
-              className={`h-9 rounded-md px-3 text-sm font-semibold transition sm:px-4 ${
+              className={`h-7 rounded-md px-2.5 text-xs font-semibold transition sm:h-8 sm:px-3 sm:text-sm ${
                 reviewMode === "all" ? "bg-stone-950 text-white shadow-sm" : "text-stone-600 hover:bg-white"
               }`}
               aria-label="Show all cards"
@@ -371,7 +371,7 @@ export default function Home() {
               All
             </button>
             <button
-              className={`h-9 rounded-md px-3 text-sm font-semibold transition sm:px-4 ${
+              className={`h-7 rounded-md px-2.5 text-xs font-semibold transition sm:h-8 sm:px-3 sm:text-sm ${
                 reviewMode === "unknown" ? "bg-stone-950 text-white shadow-sm" : "text-stone-600 hover:bg-white"
               }`}
               aria-label="Show unknown cards"
@@ -385,44 +385,84 @@ export default function Home() {
 
         {error ? <p className="mt-3 text-sm font-medium text-red-700">{error}</p> : null}
 
-        <div className="grid flex-1 place-items-center py-3 sm:py-5 md:py-8">
+        <div className="grid min-h-0 flex-1 place-items-stretch">
           {currentCard ? (
-            <div className="slideshow-stage w-full max-w-6xl">
+            <div className="slideshow-stage grid h-full w-full max-w-6xl place-items-stretch justify-self-center">
               <article
                 key={`${currentCard.id}-${slideDirection}`}
-                className={`flip-card flex min-h-[54vh] w-full flex-col items-center justify-center rounded-md border border-stone-200 bg-white/92 px-3 py-6 text-center shadow-[0_18px_58px_rgba(31,25,17,0.10)] transition-all duration-150 ease-crisp sm:min-h-[58vh] sm:px-4 sm:py-8 md:min-h-[66vh] md:px-8 md:shadow-[0_22px_80px_rgba(31,25,17,0.12)] ${
+                className={`flip-card relative flex h-full min-h-0 w-full flex-col items-center justify-center rounded-md border border-stone-200 bg-white/92 px-12 py-4 text-center shadow-[0_18px_58px_rgba(31,25,17,0.10)] transition-all duration-150 ease-crisp sm:px-16 sm:py-6 md:px-20 md:shadow-[0_22px_80px_rgba(31,25,17,0.12)] ${
                   slideDirection === "next" ? "flip-card-next" : "flip-card-previous"
                 }`}
               >
-                <div className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-stone-500 sm:mb-6 sm:text-sm">
-                  {currentIndex + 1} / {visibleCards.length}
+                <div className="absolute left-3 right-3 top-3 flex items-center justify-between gap-2">
+                  <div className="text-xs font-semibold uppercase tracking-[0.14em] text-stone-500 sm:text-sm">
+                    {currentIndex + 1} / {visibleCards.length}
+                  </div>
+                  <div className="flex items-center gap-1 rounded-md border border-stone-200 bg-white/90 px-1 py-1 shadow-sm">
+                    <button
+                      className="grid size-8 place-items-center rounded-md text-stone-500 transition hover:bg-stone-100 hover:text-stone-700 disabled:cursor-not-allowed disabled:text-stone-300 sm:size-9"
+                      aria-label="Play Chinese audio"
+                      disabled={!canSpeak}
+                      onClick={speakCurrentCard}
+                    >
+                      <svg
+                        aria-hidden="true"
+                        className="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2.2"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M4 10v4h4l5 4V6l-5 4H4Z" />
+                        <path d="M16 9.5a4 4 0 0 1 0 5" />
+                        <path d="M18.5 7a7.5 7.5 0 0 1 0 10" />
+                      </svg>
+                    </button>
+                    <input
+                      className="h-8 w-11 rounded-md border border-stone-300 bg-white px-1 text-center text-sm font-semibold text-stone-950 outline-none transition focus:border-stone-950 focus:ring-2 focus:ring-stone-950/10 sm:h-9 sm:w-14"
+                      aria-label="Jump to card number"
+                      inputMode="numeric"
+                      placeholder={`${currentIndex + 1}`}
+                      pattern="[0-9]*"
+                      type="text"
+                      value={jumpValue}
+                      onChange={(event) => setJumpValue(event.target.value.replace(/\D/g, ""))}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter") {
+                          jumpToCard();
+                        }
+                      }}
+                    />
+                    <button
+                      className="h-8 rounded-md bg-stone-950 px-2 text-xs font-semibold text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:bg-stone-300 sm:h-9 sm:px-3 sm:text-sm"
+                      disabled={visibleCards.length === 0}
+                      onClick={jumpToCard}
+                    >
+                      Go
+                    </button>
+                  </div>
                 </div>
                 <button
-                  className="mb-4 grid size-9 place-items-center rounded-full border border-stone-200 bg-white/80 text-stone-500 shadow-sm transition hover:scale-105 hover:border-stone-300 hover:bg-white hover:text-stone-700 active:scale-95 disabled:cursor-not-allowed disabled:bg-stone-100 disabled:text-stone-300 sm:mb-5 sm:size-10"
-                  aria-label="Play Chinese audio"
-                  disabled={!canSpeak}
-                  onClick={speakCurrentCard}
+                  className="absolute left-2 top-1/2 grid size-9 -translate-y-1/2 place-items-center rounded-full border border-stone-200 bg-white/85 text-xl font-semibold text-stone-700 shadow-sm transition hover:-translate-x-0.5 hover:bg-white active:translate-x-0 sm:left-4 sm:size-11 sm:text-2xl"
+                  aria-label="Previous card"
+                  onClick={() => goToCard("previous")}
                 >
-                  <svg
-                    aria-hidden="true"
-                    className="h-4 w-4 sm:h-5 sm:w-5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2.2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M4 10v4h4l5 4V6l-5 4H4Z" />
-                    <path d="M16 9.5a4 4 0 0 1 0 5" />
-                    <path d="M18.5 7a7.5 7.5 0 0 1 0 10" />
-                  </svg>
+                  ←
+                </button>
+                <button
+                  className="absolute right-2 top-1/2 grid size-9 -translate-y-1/2 place-items-center rounded-full border border-stone-200 bg-white/85 text-xl font-semibold text-stone-700 shadow-sm transition hover:translate-x-0.5 hover:bg-white active:translate-x-0 sm:right-4 sm:size-11 sm:text-2xl"
+                  aria-label="Next card"
+                  onClick={() => goToCard("next")}
+                >
+                  →
                 </button>
                 <h1
                   className={`max-w-full break-words text-[6rem] font-semibold leading-none tracking-normal text-stone-950 sm:text-[8rem] md:text-[11rem] lg:text-[13rem] ${
                     chineseFont === "kai" ? "font-kai" : ""
                   }`}
-                  style={{ fontSize: "clamp(4.5rem, 24vw, 13rem)" }}
+                  style={{ fontSize: "clamp(4rem, 22vw, 13rem)" }}
                 >
                   {currentCard.chinese}
                 </h1>
@@ -430,7 +470,7 @@ export default function Home() {
                   <p className="mt-6 max-w-3xl text-xl text-stone-600 sm:text-2xl md:mt-8 md:text-4xl">{currentCard.english}</p>
                 ) : null}
 
-                <div className="mt-8 flex flex-wrap justify-center gap-4 sm:mt-10">
+                <div className="mt-7 flex flex-wrap justify-center gap-4 sm:mt-10">
                   <button
                     className={`grid size-14 place-items-center rounded-full text-3xl font-bold shadow-sm ring-4 ring-white transition hover:scale-105 active:scale-95 sm:size-16 sm:text-4xl ${
                       currentStatus === "unknown"
@@ -464,47 +504,6 @@ export default function Home() {
           )}
         </div>
 
-        <footer className="grid grid-cols-[4.5rem_minmax(0,1fr)_4.5rem] items-center gap-2 rounded-md border border-stone-200 bg-white/75 p-2 shadow-sm backdrop-blur sm:grid-cols-[7rem_minmax(0,1fr)_7rem] sm:p-3">
-          <button
-            className="h-11 rounded-md border border-stone-300 bg-white px-3 text-2xl font-semibold shadow-sm transition hover:-translate-x-0.5 hover:border-stone-400 hover:bg-stone-50 active:translate-x-0 sm:h-12 sm:px-5"
-            aria-label="Previous card"
-            onClick={() => goToCard("previous")}
-          >
-            ←
-          </button>
-          <div className="mx-auto flex max-w-full items-center gap-1 rounded-md border border-stone-200 bg-white px-1.5 py-1 shadow-sm sm:gap-2 sm:px-2">
-            <input
-              className="h-10 w-14 rounded-md border border-stone-300 bg-white px-2 text-center text-base font-semibold text-stone-950 outline-none transition focus:border-stone-950 focus:ring-2 focus:ring-stone-950/10 sm:w-16"
-              aria-label="Jump to card number"
-              inputMode="numeric"
-              placeholder={`${currentIndex + 1}`}
-              pattern="[0-9]*"
-              type="text"
-              value={jumpValue}
-              onChange={(event) => setJumpValue(event.target.value.replace(/\D/g, ""))}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") {
-                  jumpToCard();
-                }
-              }}
-            />
-            <span className="hidden text-sm font-semibold text-stone-500 sm:inline">/ {visibleCards.length}</span>
-            <button
-              className="h-10 rounded-md bg-stone-950 px-2.5 text-sm font-semibold text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:bg-stone-300 sm:px-3"
-              disabled={visibleCards.length === 0}
-              onClick={jumpToCard}
-            >
-              Jump
-            </button>
-          </div>
-          <button
-            className="h-11 rounded-md border border-stone-300 bg-white px-3 text-2xl font-semibold shadow-sm transition hover:translate-x-0.5 hover:border-stone-400 hover:bg-stone-50 active:translate-x-0 sm:h-12 sm:px-5"
-            aria-label="Next card"
-            onClick={() => goToCard("next")}
-          >
-            →
-          </button>
-        </footer>
       </section>
     </main>
   );
