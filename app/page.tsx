@@ -310,6 +310,31 @@ export default function Home() {
     setCurrentIndex(0);
   }
 
+  function exportProgress() {
+    const exportedCards = cards.map((card, index) => ({
+      id: index + 1,
+      word: card.chinese,
+      english: card.english,
+      status: statuses[card.id] ?? null
+    }));
+    const payload = {
+      title: "中文生字表",
+      exportedAt: new Date().toISOString(),
+      reviewMode,
+      cards: exportedCards
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {
+      type: "application/json"
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "chinese-vocabulary-progress.json";
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
   const currentStatus = currentCard ? statuses[currentCard.id] : undefined;
 
   return (
@@ -322,6 +347,12 @@ export default function Home() {
               onClick={() => fileInputRef.current?.click()}
             >
               Upload
+            </button>
+            <button
+              className="h-8 shrink-0 rounded-md border border-stone-300 bg-white px-2.5 text-xs font-semibold shadow-sm transition hover:border-stone-400 hover:bg-stone-50 sm:h-9 sm:px-3 sm:text-sm"
+              onClick={exportProgress}
+            >
+              Export
             </button>
             <input
               ref={fileInputRef}
